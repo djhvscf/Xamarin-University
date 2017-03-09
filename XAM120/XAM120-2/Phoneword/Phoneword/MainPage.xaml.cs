@@ -5,9 +5,10 @@ namespace Phoneword
 {
     public partial class MainPage : ContentPage
     {
-        Entry phoneNumberText;
-        Button translateButton;
-        Button callButton;
+        private Entry phoneNumberText;
+        private Button translateButton;
+        private Button callButton;
+        private string translatedNumber;
 
         public MainPage()
         {
@@ -46,6 +47,7 @@ namespace Phoneword
             });
 
             translateButton.Clicked += OnTranslate;
+            callButton.Clicked += OnCall;
 
             this.Content = panel;
         }
@@ -53,7 +55,7 @@ namespace Phoneword
         private void OnTranslate(object sender, EventArgs e)
         {
             string enteredNumber = phoneNumberText.Text;
-            string translatedNumber = PhonewordTranslator.ToNumber(enteredNumber);
+            translatedNumber = PhonewordTranslator.ToNumber(enteredNumber);
             if (!string.IsNullOrEmpty(translatedNumber))
             {
                 callButton.IsEnabled = true;
@@ -63,6 +65,22 @@ namespace Phoneword
             {
                 callButton.IsEnabled = false;
                 callButton.Text = "Call";
+            }
+        }
+
+        async void OnCall(object sender, System.EventArgs e)
+        {
+            if (await this.DisplayAlert(
+                "Dial a Number",
+                "Would you like to call " + translatedNumber + "?",
+                "Yes",
+                "No"))
+            {
+                var dialer = DependencyService.Get<IDialer>();
+                if (dialer != null)
+                {
+                    await dialer.DialAsync(translatedNumber);
+                }
             }
         }
     }
