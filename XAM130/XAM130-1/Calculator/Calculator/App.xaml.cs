@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace Calculator
 {
+    [XamlCompilationAttribute(XamlCompilationOptions.Compile)]
     public partial class App : Application
     {
         public App()

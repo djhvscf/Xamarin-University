@@ -3,6 +3,12 @@
             xmlns="http://xamarin.com/schemas/2014/forms" 
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <OnPlatform.iOS>0,20,0,0</OnPlatform.iOS>
+        </OnPlatform>
+    </ContentPage.Padding>
+    
     <Grid Padding="5,0" RowSpacing="1" ColumnSpacing="1" BackgroundColor="Black">
 
         <Grid.RowDefinitions>
@@ -59,16 +65,16 @@
                Font="36" BorderRadius="0" Clicked="OnSelectNumber" />
 
         <Button Text="/" Grid.Row="1" Grid.Column="3"
-                BackgroundColor="#FFA500" TextColor="White"
+                BackgroundColor="{x:Static local:SharedResources.OpButtonBkColor}" TextColor="White"
                 Font="36" BorderRadius="0" Clicked="OnSelectOperator" />
         <Button Text="X" Grid.Row="2" Grid.Column="3"
-                BackgroundColor="#FFA500" TextColor="White"
+                BackgroundColor="{x:Static local:SharedResources.OpButtonBkColor}" TextColor="White"
                 Font="36" BorderRadius="0" Clicked="OnSelectOperator" />
         <Button Text="-" Grid.Row="3" Grid.Column="3"
-                BackgroundColor="#FFA500" TextColor="White"
+                BackgroundColor="{x:Static local:SharedResources.OpButtonBkColor}" TextColor="White"
                 Font="36" BorderRadius="0" Clicked="OnSelectOperator" />
         <Button Text="+" Grid.Row="4" Grid.Column="3"
-                BackgroundColor="#FFA500" TextColor="White"
+                BackgroundColor="{x:Static local:SharedResources.OpButtonBkColor}" TextColor="White"
                 Font="36" BorderRadius="0" Clicked="OnSelectOperator" />
 
         <Button Text="C" Grid.Row="5" Grid.Column="0"
@@ -76,7 +82,7 @@
                 Font="36" BorderRadius="0" Clicked="OnClear" />
 
         <Button Text="=" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3"
-                BackgroundColor="#FFA500" TextColor="White"
+                BackgroundColor="{x:Static local:SharedResources.OpButtonBkColor}" TextColor="White"
                 Font="36" BorderRadius="0" Clicked="OnCalculate" />
 
     </Grid>
